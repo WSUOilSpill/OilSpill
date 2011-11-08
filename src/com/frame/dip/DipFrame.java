@@ -76,12 +76,6 @@ public class DipFrame extends JFrame {
             OperationMenu.add( item );
         menuBar.add(OperationMenu);
 
-        JMenu AssignmentMenu = new JMenu("Homeworks");
-            item = new JMenuItem("Homework 01");    //Average intensity
-            item.addActionListener( new OperationListener() );
-            OperationMenu.add( item );
-        menuBar.add(AssignmentMenu);
-
         return menuBar;
     } //end of createMenuBar()
 
