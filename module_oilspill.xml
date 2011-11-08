@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="module_oilspill" default="compile.module.oilspill">
+  <dirname property="module.oilspill.basedir" file="${ant.file.module_oilspill}"/>
+  
+  <property name="module.jdk.home.oilspill" value="${project.jdk.home}"/>
+  <property name="module.jdk.bin.oilspill" value="${project.jdk.bin}"/>
+  <property name="module.jdk.classpath.oilspill" value="${project.jdk.classpath}"/>
+  
+  <property name="compiler.args.oilspill" value="${compiler.args}"/>
+  
+  <property name="oilspill.output.dir" value="${module.oilspill.basedir}/out/production/OilSpill"/>
+  <property name="oilspill.testoutput.dir" value="${module.oilspill.basedir}/out/test/OilSpill"/>
+  
+  <path id="oilspill.module.bootclasspath">
+    <!-- Paths to be included in compilation bootclasspath -->
+  </path>
+  
+  <path id="oilspill.module.production.classpath">
+    <path refid="${module.jdk.classpath.oilspill}"/>
+  </path>
+  
+  <path id="oilspill.runtime.production.module.classpath">
+    <pathelement location="${oilspill.output.dir}"/>
+  </path>
+  
+  <path id="oilspill.module.classpath">
+    <path refid="${module.jdk.classpath.oilspill}"/>
+    <pathelement location="${oilspill.output.dir}"/>
+  </path>
+  
+  <path id="oilspill.runtime.module.classpath">
+    <pathelement location="${oilspill.testoutput.dir}"/>
+    <pathelement location="${oilspill.output.dir}"/>
+  </path>
+  
+  
+  <patternset id="excluded.from.module.oilspill">
+    <patternset refid="ignored.files"/>
+  </patternset>
+  
+  <patternset id="excluded.from.compilation.oilspill">
+    <patternset refid="excluded.from.module.oilspill"/>
+  </patternset>
+  
+  <path id="oilspill.module.sourcepath">
+    <dirset dir="${module.oilspill.basedir}">
+      <include name="src"/>
+    </dirset>
+  </path>
+  
+  
+  <target name="compile.module.oilspill" depends="compile.module.oilspill.production,compile.module.oilspill.tests" description="Compile module OilSpill"/>
+  
+  <target name="compile.module.oilspill.production" depends="register.custom.compilers" description="Compile module OilSpill; production classes">
+    <mkdir dir="${oilspill.output.dir}"/>
+    <javac2 destdir="${oilspill.output.dir}" debug="${compiler.debug}" nowarn="${compiler.generate.no.warnings}" memorymaximumsize="${compiler.max.memory}" fork="true" executable="${module.jdk.bin.oilspill}/javac">
+      <compilerarg line="${compiler.args.oilspill}"/>
+      <bootclasspath refid="oilspill.module.bootclasspath"/>
+      <classpath refid="oilspill.module.production.classpath"/>
+      <src refid="oilspill.module.sourcepath"/>
+      <patternset refid="excluded.from.compilation.oilspill"/>
+    </javac2>
+    
+    <copy todir="${oilspill.output.dir}">
+      <fileset dir="${module.oilspill.basedir}/src">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+      </fileset>
+    </copy>
+  </target>
+  
+  <target name="compile.module.oilspill.tests" depends="register.custom.compilers,compile.module.oilspill.production" description="compile module OilSpill; test classes" unless="skip.tests"/>
+  
+  <target name="clean.module.oilspill" description="cleanup module">
+    <delete dir="${oilspill.output.dir}"/>
+    <delete dir="${oilspill.testoutput.dir}"/>
+  </target>
+</project>
