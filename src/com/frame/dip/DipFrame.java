@@ -59,22 +59,28 @@ public class DipFrame extends JFrame {
         JMenuBar menuBar = new JMenuBar();
 
         JMenu fileMenu = new JMenu("File");
-        item = new JMenuItem("Open JPG");    //Open...
-        item.addActionListener( new MenuListener() );
-        fileMenu.add( item );
-        item = new JMenuItem("Save JPG"); //Save As...
-        item.addActionListener( new MenuListener() );
-        fileMenu.add( item );
-        item = new JMenuItem("Quit");       //Quit
-        item.addActionListener( new MenuListener() );
-        fileMenu.add( item );
+            item = new JMenuItem("Open JPG");    //Open...
+            item.addActionListener( new MenuListener() );
+            fileMenu.add( item );
+            item = new JMenuItem("Save JPG"); //Save As...
+            item.addActionListener( new MenuListener() );
+            fileMenu.add( item );
+            item = new JMenuItem("Quit");       //Quit
+            item.addActionListener( new MenuListener() );
+            fileMenu.add( item );
         menuBar.add(fileMenu);
 
         JMenu OperationMenu = new JMenu("Operation");
-        item = new JMenuItem("Average");    //Average intensity
-        item.addActionListener( new OperationListener() );
-        OperationMenu.add( item );
+            item = new JMenuItem("Average");    //Average intensity
+            item.addActionListener( new OperationListener() );
+            OperationMenu.add( item );
         menuBar.add(OperationMenu);
+
+        JMenu AssignmentMenu = new JMenu("Homeworks");
+            item = new JMenuItem("Homework 01");    //Average intensity
+            item.addActionListener( new OperationListener() );
+            OperationMenu.add( item );
+        menuBar.add(AssignmentMenu);
 
         return menuBar;
     } //end of createMenuBar()
