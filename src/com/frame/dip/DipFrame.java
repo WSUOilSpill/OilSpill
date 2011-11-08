@@ -81,7 +81,7 @@ public class DipFrame extends JFrame {
 
 
     /*
- 	The following are nested classes to handle event of MenuBar
+ 	The following are nested classes to handle event of MenuBar ..
     */
     class MenuListener implements ActionListener {
 
@@ -131,7 +131,6 @@ public class DipFrame extends JFrame {
 		System.out.println("Menu selected\n");
             }
 
-            imagePanel.setImage( image );
             repaint();
 	}//end of actionPerformed()
 
